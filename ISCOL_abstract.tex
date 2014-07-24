@@ -89,11 +89,11 @@ Control verbs take infinitival VPs with unexpressed subjects as complements. In 
          \ex \begin{xlist}
 
             \ex\label{subj-control}
-                \gll dni hbvix l-h-ildh ltt l-hklb awkl\\
+                \gll dani hiv\d{t}ia\b{x} le-ha-yalda latet le-ha-kelev 'oxel\\
                      Danny promised to-the-girl to.give ACC the-dog food \\
                 \trans `Danny promised the girl to give the dog food.'
             \ex\label{obj-control}
-                \gll dni hreh l-h-ildh ltt l-hklb awkl\\
+                \gll dani hir\v{s}a le-ha-yalda latet le-ha-kelev 'oxel\\
                      Danny allowed to-the-girl to.give ACC the-dog food \\
                 \trans `Danny allowed the girl to give the dog food.'
          \end{xlist}
@@ -109,7 +109,7 @@ Control is a phenomenon which poses challenges to a computational analysis for t
 
        \begin{exe}
             \ex\label{wh-obj-control}
-                \gll mh dni hreh l-h-ildh ltt l-hklb\\
+                \gll ma dani hir\v{s}a le-ha-yalda latet le-ha-kelev\\
                      what Danny allowed to-the-girl to.give ACC the-dog\\
                 \trans `What did Danny allowed the girl to give the dog?'
     \end{exe}
@@ -118,16 +118,16 @@ The analysis produced by the LKB includes a syntactic phrase structure tree (\re
 
       \begin{exe}
      \ex\label{tree}
-        \Tree [.S   [.NP [.N mh ] ]
-                    [.S' [.NP [.N dni ] ]
-                         [.VP [.V' [.V hreh ]
-                                   [.PP [.P l ]
-                                        [.NP [.N hildh ] ] ] ]
-                              [.VP [.V' [.V ltt ] ]
-                                   [.PP [.P l ]
-                                        [.NP [.N hklb ] ] ] ] ] ] ]
+        \Tree [.S   [.NP [.N ma ] ]
+                    [.S' [.NP [.N dani ] ]
+                         [.VP [.V' [.V hir\v{s}a ]
+                                   [.PP [.P le ]
+                                        [.NP [.N hayalda ] ] ] ]
+                              [.VP [.V' [.V latet ] ]
+                                   [.PP [.P le ]
+                                        [.NP [.N hakelev ] ] ] ] ] ] ]
     \end{exe}
-The semantic approach adopted by the LKB is Minimal Recursion Semantics (MRS), which assigns a syntactically flat semantic representation of linguistic expressions. The semantic representation mainly consists of a list of semantic relations and constraints on possible scope relations among them. Structure-sharing is expressed by way of co-indexation of arguments. Thus, for example, \type{\_hreh\_v\_rel}, the semantic relation denoted by the matrix verb \hebgloss{hreh}{allow} has 4 arguments: \feature{arg0} is the event variable, which is co-indexed with the \feature{index} feature of the sentence, thus rendering it the main relation. \feature{arg1}, the `agent' is co-indexed with the \feature{arg0} of the semantic relation denoted by the subject, Danny. \feature{arg2} is co-indexed with the label of the relation denoted by the VP complement, \type{\_ntn\_v\_rel}, and \feature{arg3} is co-indexed with \feature{arg0} of the relation denoted by the object (\type{\_ildh\_n\_rel}). Furthermore, the \feature{index} feature referring to `Danny' is also the \feature{arg1} of the relation denoted by the VP complement. === this is too long, and I'm not even done yet  ===
+The semantic approach adopted by the LKB is Minimal Recursion Semantics (MRS; \citep{MRS99}), which assigns a syntactically flat semantic representation of linguistic expressions. The semantic representation mainly consists of a list of semantic relations and constraints on possible scope relations among them. Structure-sharing is expressed by way of co-indexation of arguments. Thus, for example, \type{\_hir\v{s}a\_v\_rel}, the semantic relation denoted by the matrix verb \hebgloss{hir\v{s}a}{allow} has 4 arguments: \feature{arg0} is the event variable, which is co-indexed with the \feature{index} feature of the sentence, thus rendering it the main relation. \feature{arg1}, the `agent' is co-indexed with the \feature{arg0} of the semantic relation denoted by the subject, Danny. \feature{arg2} is co-indexed with the label of the relation denoted by the VP complement, \type{\_natan\_v\_rel}, and \feature{arg3} is co-indexed with \feature{arg0} of the relation denoted by the object (\type{\_yalda\_n\_rel}). Furthermore, the \feature{index} feature referring to `Danny' is also the \feature{arg1} of the relation denoted by the VP complement. === this is too long, and I'm not even done yet  ===
 
 \begin{exe}
  \ex\label{mrs}
@@ -135,35 +135,35 @@ The semantic approach adopted by the LKB is Minimal Recursion Semantics (MRS), w
         \[ \avmspan{\it mrs}	\\
         index & \@{e2}\\
         rels & \<
-        		\[ \avmspan{\it \_mh\_n\_rel}	\\
+        		\[ \avmspan{\it \_ma\_n\_rel}	\\
         		arg0 & \@{x4}	 \],
 
-        		\[ \avmspan{\it \_dni\_n\_rel}	\\
+        		\[ \avmspan{\it \_dani\_n\_rel}	\\
         		arg0 & \@{x9}	 \],
 
-        		\[ \avmspan{\it \_hreh\_v\_rel}	\\
+        		\[ \avmspan{\it \_hir\v{s}a\_v\_rel}	\\
         		arg0 & \@{e2}	\\
         		arg1 & \@{x9} 	\\
         		arg2 & \@{h23}	\\
         		arg3 & \@{x15}	 \],
 
-        		\[ \avmspan{\it \_l\_p\_rel}	\\
+        		\[ \avmspan{\it \_le\_p\_rel}	\\
         		arg2 & \@{x15}	 \],
 
-        		\[ \avmspan{\it \_ildh\_n\_rel}	\\
+        		\[ \avmspan{\it \_yalda\_n\_rel}	\\
         		arg0 & \@{x15}	 \], \\
 
-        		\[ \avmspan{\it \_ntn\_v\_rel}	\\
+        		\[ \avmspan{\it \_natan\_v\_rel}	\\
         		lbl & \@{h23}	\\
         		arg0 & \@{e24}	\\
         		arg1 & \@{x15} 	\\
         		arg2 & \@{x4} 	\\
         		arg3 & \@{x25}	 \],
 
-        		\[ \avmspan{\it \_l\_p\_rel}	\\
+        		\[ \avmspan{\it \_le\_p\_rel}	\\
         		arg2 & \@{x25} 	\\ \],
 
-        		\[ \avmspan{\it \_klb\_n\_rel}	\\
+        		\[ \avmspan{\it \_kelev\_n\_rel}	\\
         		arg0 & \@{x25}	\],
         \>	 \]
         \end{avm}
