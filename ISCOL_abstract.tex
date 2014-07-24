@@ -1,0 +1,176 @@
+%General: for each lexical type, include part of the relevant hierarchy, and an avm of the type. This will lead to a discussion of the main features. End with a sample lexical entry (in avm format).
+% Sample sentences for the different phenomena will appear in the introduction about Hebrew.
+\documentclass[a4paper]{article}
+
+\title{HEGRAM}
+
+%%%Packages
+\usepackage[round,nonamebreak]{natbib}
+\usepackage{hyperref}%for in-document linking
+\usepackage{graphicx}%for avms
+\usepackage{avm}%for avms
+\usepackage{qtree}%for trees
+\usepackage{pgf}%for new trees (tikz)
+\usepackage{tikz}%for new trees (tikz)
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+\usepackage{cjhebrew}%for hebrew
+
+\usepackage{gb4e}%for glosses, enumaration, examples. MUST BE LAST OF ALL PACKAGES!!!
+
+%%%
+
+%%% Macros
+
+%For features and types:
+\newcommand{\type}{\emph}
+\newcommand{\feature}[1]{{\scshape{#1}}}
+
+%For hebrew transliteration with and without glosses:
+\newcommand{\heb}[1]{\emph{#1}}
+\newcommand{\hebgloss}[2]{\heb{#1} (`#2')}
+
+%For underlining hyperreferences (to show up in the printed version as well):
+\newcommand{\uhyperref}[2]{\hyperref[{#1}]{\underline{#2}}}
+\newcommand{\fileref}[1]{\noindent {\small\bf $<$ {#1}.tdl $>$ \\}}
+
+
+%%%
+
+%For normalizing avms:
+\avmsortfont{\it}
+\avmvalfont{\it}
+\avmfont{\sc}
+
+%To get an extra subsection level (gives number to paragraph):
+\setcounter{secnumdepth}{5}
+
+%For making the links have color (instead of boxes that don't show up in print):
+\hypersetup{
+colorlinks=true,
+linkcolor={red!80!black}
+}
+\begin{document}
+
+\section{Background}
+We present the current state of HEGRAM, a deep linguistic processing grammar of Modern Hebrew. HEGRAM is implemented in the
+Linguistic Knowledge Builder (LKB) system and grounded in the theoretical framework of
+Head-driven Phrase Structure Grammar (HPSG).
+
+\section{HPSG}
+Head-Driven Phrase Structure Grammar (HPSG; \citealt{PollardSag94}) is  a constraint-based
+grammatical theory. In HPSG all linguistic objects (i.e., words, phrases, and clauses) are represented as typed feature structures.
+The basic mechanism by which linguistic objects are related to each
+other is structure-sharing. Structure-sharing occurs when two paths in a
+feature structure lead to the very same (token-identical) node. As a result,
+the information content associated with that node is the unification of the
+information provided by the various shared paths. A linguistic expression
+is said to be grammatical when the information contributed by components
+of the linguistic object is compatible and can accumulate to form
+a complete description of the expression.
+
+HPSG has logical and mathematical foundations which make it
+amenable to computational implementation. Moreover, the declarative nature of HPSG grammars makes them non-directional and thus suitable for both parsing and generation.
+
+\section{About HEGRAM}
+
+HEGRAM is derived from the LinGO Grammar Matrix, which is an open-source starter-kit for the development of broad-coverage, precision HPSG grammars for diverse languages \citep{BenderFlickingerOepen02}. The Matrix provides a skeleton of a grammar, which covers basic lexical and phrasal types, semantic composition, and the infrastructure for unbounded dependencies and coordination. The current state of the grammar is significantly different from the Matrix-derived one.
+
+We have refined and extended the core grammar with the goal of achieving a broad-coverage grammar. One notable modification is the adoption of the packed argument-frame approach proposed by \citet{Haugereid11} to account for multiple argument frames per verb. In addition we extended the coverage to account for the Hebrew copular construction, including the possibility of zero copula, as well as other language-specific features such as noun-adjective agreement, and accusative case marking. At its current state, HEGRAM contains a small lexicon of
+=== something about the lexicon and how we intend to interface with a large-scale lexicon
+
+At this point our grammar covers ``canonical'' clauses with SVO word order, different complement types, verbs with multiple argument frames, long distance dependencies (wh-questions and non-subject topicalization), non-verbal predicates (aka ``nominal clauses'') including zero copula constructions, and control verbs. In what follows we will focus on control verbs to illustrate key features of our analysis.
+
+\section{Control}
+Control verbs take infinitival VPs with unexpressed subjects as complements. In subject control (\ref{subj-control}), the unexpressed subject of the VP complement is identified with the subject of the control verb. With object control verbs (\ref{obj-control}), the unexpressed subject of the VP is the object of the control verb.
+
+      \begin{exe}
+         \ex \begin{xlist}
+
+            \ex\label{subj-control}
+                \gll dni hbvix l-h-ildh ltt l-hklb awkl\\
+                     Danny promised to-the-girl to.give ACC the-dog food \\
+                \trans `Danny promised the girl to give the dog food.'
+            \ex\label{obj-control}
+                \gll dni hreh l-h-ildh ltt l-hklb awkl\\
+                     Danny allowed to-the-girl to.give ACC the-dog food \\
+                \trans `Danny allowed the girl to give the dog food.'
+         \end{xlist}
+    \end{exe}
+
+Control is a phenomenon which poses challenges to a computational analysis for two reasons. First, one syntactic argument in a sentence assumes two semantic roles. For example, in (\ref{subj-control}) the subject, Danny, is both the `promiser' and the `giver'. In (\ref{obj-control}) the girl is both the `allowed' and the `giver'. In addition, the controller is not necessarily adjacent to the verb of which it is the semantic subject.
+
+ === something about how only a deep analysis can identify and represent these non-trivial relationships between arguments ====
+
+\section{Proof of Concept}
+
+ As proof of concept, in what follows we present the HEGRAM analysis of an example sentence (\ref{wh-obj-control}),  which involves object control and a wh-question. In addition to providing the correct semantic linking between the matrix object and the unexpressed VPinf subject, the parser is required to recognize the syntactic and semantic role of the `displaced' wh-element.
+
+       \begin{exe}
+            \ex\label{wh-obj-control}
+                \gll mh dni hreh l-h-ildh ltt l-hklb\\
+                     what Danny allowed to-the-girl to.give ACC the-dog\\
+                \trans `What did Danny allowed the girl to give the dog?'
+    \end{exe}
+
+The analysis produced by the LKB includes a syntactic phrase structure tree (\ref{tree}) and a semantic representation(\ref{mrs}). The syntactic tree represents the constituent structure assumed for the sentence.
+
+      \begin{exe}
+     \ex\label{tree}
+        \Tree [.S   [.NP [.N mh ] ]
+                    [.S' [.NP [.N dni ] ]
+                         [.VP [.V' [.V hreh ]
+                                   [.PP [.P l ]
+                                        [.NP [.N hildh ] ] ] ]
+                              [.VP [.V' [.V ltt ] ]
+                                   [.PP [.P l ]
+                                        [.NP [.N hklb ] ] ] ] ] ] ]
+    \end{exe}
+The semantic approach adopted by the LKB is Minimal Recursion Semantics (MRS), which assigns a syntactically flat semantic representation of linguistic expressions. The semantic representation mainly consists of a list of semantic relations and constraints on possible scope relations among them. Structure-sharing is expressed by way of co-indexation of arguments. Thus, for example, \type{\_hreh\_v\_rel}, the semantic relation denoted by the matrix verb \hebgloss{hreh}{allow} has 4 arguments: \feature{arg0} is the event variable, which is co-indexed with the \feature{index} feature of the sentence, thus rendering it the main relation. \feature{arg1}, the `agent' is co-indexed with the \feature{arg0} of the semantic relation denoted by the subject, Danny. \feature{arg2} is co-indexed with the label of the relation denoted by the VP complement, \type{\_ntn\_v\_rel}, and \feature{arg3} is co-indexed with \feature{arg0} of the relation denoted by the object (\type{\_ildh\_n\_rel}). Furthermore, the \feature{index} feature referring to `Danny' is also the \feature{arg1} of the relation denoted by the VP complement. === this is too long, and I'm not even done yet  ===
+
+\begin{exe}
+ \ex\label{mrs}
+         \begin{avm}
+        \[ \avmspan{\it mrs}	\\
+        index & \@{e2}\\
+        rels & \<
+        		\[ \avmspan{\it \_mh\_n\_rel}	\\
+        		arg0 & \@{x4}	 \],
+
+        		\[ \avmspan{\it \_dni\_n\_rel}	\\
+        		arg0 & \@{x9}	 \],
+
+        		\[ \avmspan{\it \_hreh\_v\_rel}	\\
+        		arg0 & \@{e2}	\\
+        		arg1 & \@{x9} 	\\
+        		arg2 & \@{h23}	\\
+        		arg3 & \@{x15}	 \],
+
+        		\[ \avmspan{\it \_l\_p\_rel}	\\
+        		arg2 & \@{x15}	 \],
+
+        		\[ \avmspan{\it \_ildh\_n\_rel}	\\
+        		arg0 & \@{x15}	 \], \\
+
+        		\[ \avmspan{\it \_ntn\_v\_rel}	\\
+        		lbl & \@{h23}	\\
+        		arg0 & \@{e24}	\\
+        		arg1 & \@{x15} 	\\
+        		arg2 & \@{x4} 	\\
+        		arg3 & \@{x25}	 \],
+
+        		\[ \avmspan{\it \_l\_p\_rel}	\\
+        		arg2 & \@{x25} 	\\ \],
+
+        		\[ \avmspan{\it \_klb\_n\_rel}	\\
+        		arg0 & \@{x25}	\],
+        \>	 \]
+        \end{avm}
+\end{exe}
+
+\bibliographystyle{plainnat}
+\bibliography{list}
+
+\end{document}
+
