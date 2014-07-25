@@ -89,12 +89,12 @@ Control verbs take infinitival VPs with unexpressed subjects as complements. In 
          \ex \begin{xlist}
 
             \ex\label{subj-control}
-                \gll dani hiv\d{t}ia\b{x} la-yalda latet la-kelev 'oxel\\
-                     Danny promised to.the-girl to.give to.the-dog food \\
+                \gll dani hiv\d{t}ia\b{x} le-ha-yalda latet le-ha-kelev 'oxel\\
+                     Danny promised to-the-girl to.give ACC the-dog food \\
                 \trans `Danny promised the girl to give the dog food.'
             \ex\label{obj-control}
-                \gll dani hir\v{s}a la-yalda latet la-kelev 'oxel\\
-                     Danny allowed to.the-girl to.give to.the-dog food \\
+                \gll dani hir\v{s}a le-ha-yalda latet le-ha-kelev 'oxel\\
+                     Danny allowed to-the-girl to.give ACC the-dog food \\
                 \trans `Danny allowed the girl to give the dog food.'
          \end{xlist}
     \end{exe}
@@ -109,8 +109,8 @@ Control is a phenomenon which poses challenges to a computational analysis for t
 
        \begin{exe}
             \ex\label{wh-obj-control}
-                \gll ma dani hir\v{s}a la-yalda latet la-kelev\\
-                     what Danny allowed to.the-girl to.give to.the-dog\\
+                \gll ma dani hir\v{s}a le-ha-yalda latet le-ha-kelev\\
+                     what Danny allowed to-the-girl to.give ACC the-dog\\
                 \trans `What did Danny allowed the girl to give the dog?'
     \end{exe}
 
